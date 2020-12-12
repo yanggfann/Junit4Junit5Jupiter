@@ -11,7 +11,7 @@ Jupiter提供了哪些新的测试方法？
 ### 配置项目
  * 打开pom.xml，Open as project
  * 按如下方式将src.main.java的java设置为Sources, 将src.test.java的java设置为Tests
- 
+ ![设置Sources和Tests](https://github.com/yanggfann/JunitProbe/blob/main/Junit4Junit5Jupiter/image/Sources%20Tests.png)
  * 在IntelliJ的Java8项目中，尽管已经将Project SDK和Project Launguage Level设置为Java 8，
  在运行单元测试的过程中，如果报java:javaTask:source release 8 requires target release 8,
  请按如下两种方式解决
