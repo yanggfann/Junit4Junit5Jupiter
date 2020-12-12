@@ -46,8 +46,8 @@ public class StudentTest {
     public void should_throw_business_exception_when_student_description_length_more_than_20() {
         //given when
         StudentCommand studentCommand = StudentCommand.builder()
-                .name(RandomStringUtils.randomAlphanumeric(11))
-                .description(RandomStringUtils.randomAlphanumeric(19))
+                .name(RandomStringUtils.randomAlphanumeric(9))
+                .description(RandomStringUtils.randomAlphanumeric(21))
                 .build();
     }
 

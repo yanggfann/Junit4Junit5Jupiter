@@ -164,3 +164,76 @@ Junit4中任何断言失败，测试就会在该位置失败，意味着不会�
 Student生成的单元测试报告为Test Results - StudentTest.html
 
 StudentJupiterTest生成的单元测试报告为Test Results - StudentJupiterTest.html
+
+### 校验异常
+
+Junit4提供了@Test(expected = Exception.class)的方式来校验异常，但这种方式的缺点是，当两个不同的业务抛出相同的业务异常，
+而仅仅message不同时则无法精准的校验。
+```
+    @Test(expected = BusinessException.class)
+    public void should_throw_business_exception_when_student_name_length_more_than_10() {
+        //given when
+        StudentCommand.builder()
+                      .name(RandomStringUtils.randomAlphanumeric(11))
+                      .build();
+    }
+    
+    @Test(expected = BusinessException.class)
+    public void should_throw_business_exception_when_student_description_length_more_than_20() {
+        //given when
+        StudentCommand.builder()
+                .name(RandomStringUtils.randomAlphanumeric(9))
+                .description(RandomStringUtils.randomAlphanumeric(21))
+                .build();
+    }
+```
+
+当然也可以通过捕获异常的方式，再判断message，但这种方式不太优雅。
+```
+    @Test
+    public void should_validate_message_when_student_name_length_more_than_10() {
+        //given when
+        try {
+            StudentCommand.builder()
+                          .name(RandomStringUtils.randomAlphanumeric(11))
+                          .build();
+        } catch (BusinessException e) {
+            assertEquals(e.getMessage(), "The length of student name exceed 10 chars.");
+        }
+    }
+```
+
+Jupiter提供了新的校验方式，Assertions.assertThrows，在Junit的4.13的版本中，Asserts.assertThrows也提供了类似的功能
+```
+    @Test
+    @DisplayName("It tests the length of student name should less than 10 chars")
+    void should_throw_business_exception_when_student_name_length_more_than_10() {
+        //given when
+        BusinessException businessException = Assertions.assertThrows(BusinessException.class, this::buildStudentName);
+
+        //then
+        assertEquals(businessException.getMessage(), "The length of student name exceed 10 chars.");
+    }
+
+    private void buildStudentName() {
+        StudentCommand.builder()
+                .name(RandomStringUtils.randomAlphanumeric(11))
+                .build();
+    }
+
+    @Test
+    @DisplayName("It tests the length of student description should less than 20 chars")
+    void should_throw_business_exception_when_student_description_length_more_than_20() {
+        //given when
+        BusinessException businessException = Assertions.assertThrows(BusinessException.class, this::buildStudentDescription);
+
+        //then
+        assertEquals(businessException.getMessage(), "The length of student name exceed 20 chars.");
+    }
+
+    private void buildStudentDescription() {
+        StudentCommand.builder()
+                .description(RandomStringUtils.randomAlphanumeric(21))
+                .build();
+    }
+```
