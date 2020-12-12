@@ -19,6 +19,7 @@ Jupiter提供了哪些新的测试方法？
     
     在IntelliJ的【Preferences】->【Compiler】->【Java Compiler】中将Target bytecode verion改为1.8，
     如下图所示
+    ![target release 1.8](https://github.com/yanggfann/JunitProbe/blob/main/Junit4Junit5Jupiter/image/target%20release%201.8.png)
     
     * 方案2
     
@@ -158,4 +159,8 @@ Junit4中任何断言失败，测试就会在该位置失败，意味着不会�
 可以在类和方法中添加@DisplayName注释。这个名称在生成报告时使用，这使得描述测试的目的和追踪失败更容易
 
 运行单元测试后，点击如下位置则可生成html报告
+![generate report](https://github.com/yanggfann/JunitProbe/blob/main/Junit4Junit5Jupiter/image/generate%20report.png)
 
+Student生成的单元测试报告为Test Results - StudentTest.html
+
+StudentJupiterTest生成的单元测试报告为Test Results - StudentJupiterTest.html
