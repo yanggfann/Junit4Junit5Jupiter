@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Junit4-Junit5" target="1.5" />
+      <module name="Junit4-Junit5" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -25,8 +25,8 @@ public class StudentTest {
     @Test
     public void should_test_every_test() {
         //given when
-        int expected = 4;
-        int actual = 2 + 2;
+        int expected = 6;
+        int actual = 10 - 4;
         Object nullValue = null;
 
         //then

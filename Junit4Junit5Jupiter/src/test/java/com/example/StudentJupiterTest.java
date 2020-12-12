@@ -37,10 +37,10 @@ class StudentJupiterTest {
         //then
         assertAll(
                 "Assert All of these",
-                () -> assertEquals(expected, actual, "INCONCEIVABLE!"),
+                () -> assertEquals(expected, actual),
                 () -> assertFalse(nullValue == null),
                 () -> assertNull(nullValue),
-                () -> assertNotNull("A String", "INCONCEIVABLE!"),
+                () -> assertNotNull("Hello Word!"),
                 () -> assertTrue(nullValue != null));
     }
 
